@@ -1,5 +1,5 @@
 //
-//  HomeController.swift
+//  AccountsTableController.swift
 //  Gia
 //
 //  Created by Prudhvi Gadiraju on 8/3/20.
@@ -8,10 +8,9 @@
 
 import UIKit
 
-final class HomeController: UIViewController {
+class AccountsTableController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        add(AccountsTableController())
+        view.backgroundColor = .red
     }
 }

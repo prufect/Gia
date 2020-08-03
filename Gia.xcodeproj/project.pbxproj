@@ -14,6 +14,8 @@
 		A4BFE00A24D88ABE009AC522 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A4BFE00824D88ABE009AC522 /* LaunchScreen.storyboard */; };
 		A4BFE01524D88ABE009AC522 /* GiaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4BFE01424D88ABE009AC522 /* GiaTests.swift */; };
 		A4BFE02024D88B6A009AC522 /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4BFE01F24D88B6A009AC522 /* HomeController.swift */; };
+		A4BFE02224D88CB9009AC522 /* AccountsTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4BFE02124D88CB9009AC522 /* AccountsTableController.swift */; };
+		A4BFE02524D88F87009AC522 /* UIViewController+Add.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4BFE02424D88F87009AC522 /* UIViewController+Add.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +40,8 @@
 		A4BFE01424D88ABE009AC522 /* GiaTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiaTests.swift; sourceTree = "<group>"; };
 		A4BFE01624D88ABE009AC522 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A4BFE01F24D88B6A009AC522 /* HomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
+		A4BFE02124D88CB9009AC522 /* AccountsTableController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountsTableController.swift; sourceTree = "<group>"; };
+		A4BFE02424D88F87009AC522 /* UIViewController+Add.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Add.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,10 +83,12 @@
 		A4BFDFFC24D88ABD009AC522 /* Gia */ = {
 			isa = PBXGroup;
 			children = (
+				A4BFE02324D88F7E009AC522 /* Extensions */,
 				A4BFDFFD24D88ABD009AC522 /* AppDelegate.swift */,
 				A4BFDFFF24D88ABD009AC522 /* SceneDelegate.swift */,
 				A4BFE00124D88ABD009AC522 /* RootController.swift */,
 				A4BFE01F24D88B6A009AC522 /* HomeController.swift */,
+				A4BFE02124D88CB9009AC522 /* AccountsTableController.swift */,
 				A4BFE00624D88ABE009AC522 /* Assets.xcassets */,
 				A4BFE00824D88ABE009AC522 /* LaunchScreen.storyboard */,
 				A4BFE00B24D88ABE009AC522 /* Info.plist */,
@@ -97,6 +103,14 @@
 				A4BFE01624D88ABE009AC522 /* Info.plist */,
 			);
 			path = GiaTests;
+			sourceTree = "<group>";
+		};
+		A4BFE02324D88F7E009AC522 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				A4BFE02424D88F87009AC522 /* UIViewController+Add.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -199,7 +213,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A4BFE02224D88CB9009AC522 /* AccountsTableController.swift in Sources */,
 				A4BFE02024D88B6A009AC522 /* HomeController.swift in Sources */,
+				A4BFE02524D88F87009AC522 /* UIViewController+Add.swift in Sources */,
 				A4BFE00224D88ABD009AC522 /* RootController.swift in Sources */,
 				A4BFDFFE24D88ABD009AC522 /* AppDelegate.swift in Sources */,
 				A4BFE00024D88ABD009AC522 /* SceneDelegate.swift in Sources */,
