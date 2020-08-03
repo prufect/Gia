@@ -61,7 +61,8 @@ final class HomeController: UITableViewController {
     
     private func setupTableView() {
         tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "AccountCell2")
+        tableView.register(AccountRow.self, forCellReuseIdentifier: "AccountCell2")
+        tableView.estimatedRowHeight = 44
     }
     
     private func setupSearch() {
@@ -77,8 +78,8 @@ extension HomeController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "AccountCell2", for: indexPath)
-        cell.textLabel?.text = accounts[indexPath.row].customerName
+        let cell = tableView.dequeueReusableCell(withIdentifier: "AccountCell2", for: indexPath) as! AccountRow
+        cell.configure(for: accounts[indexPath.row])
         return cell
     }
 }
