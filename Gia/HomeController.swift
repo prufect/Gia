@@ -48,7 +48,7 @@ final class HomeController: UIViewController {
                 emptyListController?.remove()
                 emptyListController = nil
             }
-            add(AccountsTableController())
+            add(AccountsTableController(with: accountsData))
         }
     }
     
