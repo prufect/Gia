@@ -83,17 +83,4 @@ extension HomeController {
     }
 }
 
-extension UITableViewController {
-    func showEmptyView() {
-        tableView.separatorStyle = .none
-        tableView.isScrollEnabled = false
-        tableView.backgroundView = UIView()
-        add(EmptyListController(), to: tableView.backgroundView)
-    }
-    
-    func removeEmptyView() {
-        tableView.isScrollEnabled = true
-        tableView.separatorStyle = .singleLine
-        tableView.backgroundView = nil
-    }
-}
+
