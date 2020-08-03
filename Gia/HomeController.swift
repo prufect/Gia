@@ -12,7 +12,10 @@ final class HomeController: UITableViewController {
     
     private var storage = AccountsStore()
     
-    private var accounts: [AccountsData] = []
+    private var accounts: [AccountsData] = [] {
+        didSet { filteredAccounts = accounts }
+    }
+    
     private var filteredAccounts: [AccountsData] = [] {
         didSet { reload() }
     }
@@ -52,11 +55,11 @@ final class HomeController: UITableViewController {
     }
     
     private func setupView() {
-        if accounts.count == 0 {
-            add(EmptyListController(), to: tableView.tableFooterView)
-        } else {
-            tableView.tableFooterView = UIView()
-        }
+//        if accounts.count == 0 {
+//            add(EmptyListController(), to: tableView.tableFooterView)
+//        } else {
+//            tableView.tableFooterView = UIView()
+//        }
     }
     
     private func setupNav() {
@@ -100,6 +103,11 @@ extension HomeController {
             
             filteredAccounts.remove(at: indexPath.row)
         }
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let account = filteredAccounts[indexPath.row]
+        navigationController?.pushViewController(DetailsController(account: account), animated: true)
     }
 }
 
