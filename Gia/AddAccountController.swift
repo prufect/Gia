@@ -10,12 +10,15 @@ import UIKit
 
 final class AddAccountController: UITableViewController {
     
+    private var filteredAccounts: [AccountsData] = []
     private var accounts: [AccountsData] = Bundle.main.decode(Accounts.self, from: "accounts.json").data
     private var onAccountTap: (AccountsData) -> ()
     
     init(onAccountTap: @escaping (AccountsData) -> ()) {
         self.onAccountTap = onAccountTap
         super.init(nibName: nil, bundle: nil)
+        
+        filteredAccounts = accounts
     }
     
     required init?(coder: NSCoder) {
@@ -26,6 +29,7 @@ final class AddAccountController: UITableViewController {
         super.viewDidLoad()
         
         setupNavBar()
+        setupSearch()
         setupTableView()
     }
     
@@ -39,6 +43,13 @@ final class AddAccountController: UITableViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(onDoneTapped))
     }
     
+    private func setupSearch() {
+        let searchController = UISearchController(searchResultsController: nil)
+        searchController.searchResultsUpdater = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        navigationItem.searchController = searchController
+    }
+    
     private func setupTableView() {
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "AccountCell")
     }
@@ -46,17 +57,35 @@ final class AddAccountController: UITableViewController {
 
 extension AddAccountController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return accounts.count
+        return filteredAccounts.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "AccountCell", for: indexPath)
-        cell.textLabel?.text = accounts[indexPath.row].customerName
+        cell.textLabel?.text = filteredAccounts[indexPath.row].customerName
         return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        onAccountTap(accounts[indexPath.row])
-        dismiss(animated: true, completion: nil)
+        onAccountTap(filteredAccounts[indexPath.row])
+        
+        if navigationItem.searchController!.isActive {
+            self.dismiss(animated: false, completion: nil)
+        }
+        self.dismiss(animated: true, completion: nil)
+    }
+}
+
+extension AddAccountController: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        if let text = searchController.searchBar.text {
+            if text.isEmpty {
+                filteredAccounts = accounts
+            } else {
+                filteredAccounts = accounts.filter { $0.customerName.contains(text) }
+            }
+            
+            tableView.reloadData()
+        }
     }
 }
