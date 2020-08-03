@@ -8,32 +8,19 @@
 
 import UIKit
 
-final class HomeController: UIViewController {
-    
-    private var emptyListController: EmptyListController? = nil
-    
-    private lazy var tableView: UITableView = {
-        let tv = UITableView()
-        tv.delegate = self
-        tv.dataSource = self
-        tv.translatesAutoresizingMaskIntoConstraints = false
-        tv.register(UITableViewCell.self, forCellReuseIdentifier: "AccountCell2")
-        return tv
-    }()
+final class HomeController: UITableViewController {
     
     private var accounts: [AccountsData] = [] {
-        didSet {
-            tableView.reloadData()
-            setupView()
-        }
+        didSet { reload() }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupNav()
-        setupView()
+        setupSearch()
         setupTableView()
+        reload()
     }
     
     @objc func onAddTapped() {
@@ -45,17 +32,12 @@ final class HomeController: UIViewController {
         present(addAccountController, animated: true, completion: nil)
     }
     
-    private func setupView() {
-        if accounts.isEmpty {
-            tableView.isHidden = true
-            emptyListController = EmptyListController()
-            add(emptyListController!)
+    func reload() {
+        tableView.reloadData()
+        if accounts.count == 0 {
+            showEmptyView()
         } else {
-            tableView.isHidden = false
-            if emptyListController != nil {
-                emptyListController?.remove()
-                emptyListController = nil
-            }
+            removeEmptyView()
         }
     }
     
@@ -66,24 +48,40 @@ final class HomeController: UIViewController {
     }
     
     private func setupTableView() {
-        view.addSubview(tableView)
-        NSLayoutConstraint.activate([
-            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-        ])
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "AccountCell2")
+    }
+    
+    private func setupSearch() {
+        let searchController = UISearchController()
+        searchController.obscuresBackgroundDuringPresentation = false
+        navigationItem.searchController = searchController
     }
 }
 
-extension HomeController: UITableViewDelegate, UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+extension HomeController {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return accounts.count
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "AccountCell2", for: indexPath)
         cell.textLabel?.text = accounts[indexPath.row].customerName
         return cell
+    }
+}
+
+extension UITableViewController {
+    func showEmptyView() {
+        tableView.separatorStyle = .none
+        tableView.isScrollEnabled = false
+        tableView.backgroundView = UIView()
+        add(EmptyListController(), to: tableView.backgroundView)
+    }
+    
+    func removeEmptyView() {
+        tableView.isScrollEnabled = true
+        tableView.separatorStyle = .singleLine
+        tableView.backgroundView = nil
     }
 }
