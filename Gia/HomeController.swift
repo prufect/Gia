@@ -9,15 +9,25 @@
 import UIKit
 
 final class HomeController: UIViewController {
+    var accountsData: [AccountsData] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupNav()
-        add(AccountsTableController())
+        setupView()
     }
     
     @objc func onAddTapped() {
         print("Tapped Add")
+    }
+    
+    private func setupView() {
+        if accountsData.isEmpty {
+            add(EmptyListController())
+        } else {
+            add(AccountsTableController())
+        }
     }
     
     private func setupNav() {
