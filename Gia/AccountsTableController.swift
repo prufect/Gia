@@ -12,4 +12,8 @@ class AccountsTableController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
     }
+    
+    func reload() {
+        tableView.reloadData()
+    }
 }

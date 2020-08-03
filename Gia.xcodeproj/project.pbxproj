@@ -23,6 +23,8 @@
 		A4BFE03124D89189009AC522 /* payments.json in Resources */ = {isa = PBXBuildFile; fileRef = A4BFE02C24D89189009AC522 /* payments.json */; };
 		A4BFE03224D89189009AC522 /* acctdetails.json in Resources */ = {isa = PBXBuildFile; fileRef = A4BFE02D24D89189009AC522 /* acctdetails.json */; };
 		A4BFE03424D89223009AC522 /* EmptyListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4BFE03324D89223009AC522 /* EmptyListController.swift */; };
+		A4BFE03724D894C8009AC522 /* AddAccountController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4BFE03624D894C8009AC522 /* AddAccountController.swift */; };
+		A4BFE03924D89790009AC522 /* Bundle+Decode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4BFE03824D89790009AC522 /* Bundle+Decode.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +58,8 @@
 		A4BFE02C24D89189009AC522 /* payments.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = payments.json; sourceTree = "<group>"; };
 		A4BFE02D24D89189009AC522 /* acctdetails.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = acctdetails.json; sourceTree = "<group>"; };
 		A4BFE03324D89223009AC522 /* EmptyListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyListController.swift; sourceTree = "<group>"; };
+		A4BFE03624D894C8009AC522 /* AddAccountController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAccountController.swift; sourceTree = "<group>"; };
+		A4BFE03824D89790009AC522 /* Bundle+Decode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Decode.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +108,7 @@
 				A4BFDFFF24D88ABD009AC522 /* SceneDelegate.swift */,
 				A4BFE00124D88ABD009AC522 /* RootController.swift */,
 				A4BFE01F24D88B6A009AC522 /* HomeController.swift */,
+				A4BFE03624D894C8009AC522 /* AddAccountController.swift */,
 				A4BFE02124D88CB9009AC522 /* AccountsTableController.swift */,
 				A4BFE02624D89172009AC522 /* Models.swift */,
 				A4BFE00624D88ABE009AC522 /* Assets.xcassets */,
@@ -126,6 +131,7 @@
 			isa = PBXGroup;
 			children = (
 				A4BFE02424D88F87009AC522 /* UIViewController+Add.swift */,
+				A4BFE03824D89790009AC522 /* Bundle+Decode.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -257,8 +263,10 @@
 			files = (
 				A4BFE02224D88CB9009AC522 /* AccountsTableController.swift in Sources */,
 				A4BFE02024D88B6A009AC522 /* HomeController.swift in Sources */,
+				A4BFE03724D894C8009AC522 /* AddAccountController.swift in Sources */,
 				A4BFE02524D88F87009AC522 /* UIViewController+Add.swift in Sources */,
 				A4BFE03424D89223009AC522 /* EmptyListController.swift in Sources */,
+				A4BFE03924D89790009AC522 /* Bundle+Decode.swift in Sources */,
 				A4BFE00224D88ABD009AC522 /* RootController.swift in Sources */,
 				A4BFDFFE24D88ABD009AC522 /* AppDelegate.swift in Sources */,
 				A4BFE00024D88ABD009AC522 /* SceneDelegate.swift in Sources */,

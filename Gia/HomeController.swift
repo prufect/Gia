@@ -9,7 +9,16 @@
 import UIKit
 
 final class HomeController: UIViewController {
-    var accountsData: [AccountsData] = []
+    
+    private var emptyListController: EmptyListController? = nil
+    private var accountTableController: AccountsTableController? = nil
+    
+    private var accountsData: [AccountsData] = [] {
+        didSet {
+            accountTableController?.reload()
+            setupView()
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,13 +28,26 @@ final class HomeController: UIViewController {
     }
     
     @objc func onAddTapped() {
-        print("Tapped Add")
+        let addAccountController = UINavigationController(rootViewController:
+            AddAccountController(onAccountTap: { [weak self] accountsData in
+                self?.accountsData.append(accountsData)
+            }))
+        
+        present(addAccountController, animated: true, completion: nil)
     }
     
     private func setupView() {
         if accountsData.isEmpty {
+            if accountTableController != nil {
+                accountTableController?.remove()
+                accountTableController = nil
+            }
             add(EmptyListController())
         } else {
+            if emptyListController != nil {
+                emptyListController?.remove()
+                emptyListController = nil
+            }
             add(AccountsTableController())
         }
     }
