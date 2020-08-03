@@ -1,0 +1,66 @@
+{
+    "success": true,
+    "message": "Data retrieved successfully",
+    "data": [
+        {
+            "customerNumber": "1100",
+            "customerName": "Google Inc",
+            "parentCustomerNumber": "1100",
+            "ParentCustomerName": "Google Inc"
+        },
+        {
+            "customerNumber": "1200",
+            "customerName": "Apple Inc",
+            "parentCustomerNumber": "1200",
+            "ParentCustomerName": "Apple Inc"
+        },
+        {
+            "customerNumber": "1300",
+            "customerName": "Facebook Inc",
+            "parentCustomerNumber": "1300",
+            "ParentCustomerName": "Facebook Inc"
+        },
+        {
+            "customerNumber": "1400",
+            "customerName": "IBM Corporation",
+            "parentCustomerNumber": "1400",
+            "ParentCustomerName": "IBM Corporation"
+        },
+        {
+            "customerNumber": "1500",
+            "customerName": "Microsoft Corporation",
+            "parentCustomerNumber": "1500",
+            "ParentCustomerName": "Microsoft Corporation"
+        },
+        {
+            "customerNumber": "1600",
+            "customerName": "Amazon Inc",
+            "parentCustomerNumber": "1600",
+            "ParentCustomerName": "Amazon Inc"
+        },
+        {
+            "customerNumber": "1700",
+            "customerName": "Tesla Corporation",
+            "parentCustomerNumber": "1700",
+            "ParentCustomerName": "Tesla Corporation"
+        },
+        {
+            "customerNumber": "1800",
+            "customerName": "Oracle Corporation",
+            "parentCustomerNumber": "1800",
+            "ParentCustomerName": "Oracle Corporation"
+        },
+        {
+            "customerNumber": "1900",
+            "customerName": "Solix Technologies",
+            "parentCustomerNumber": "1900",
+            "ParentCustomerName": "Solix Technologies"
+        },
+        {
+            "customerNumber": "2000",
+            "customerName": "Emagia Corporation",
+            "parentCustomerNumber": "2000",
+            "ParentCustomerName": "Emagia Corporation"
+        }
+    ]
+}

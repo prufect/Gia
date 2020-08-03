@@ -1,0 +1,21 @@
+{
+    "success": true,
+    "message": "Data retrieved successfully",
+    "data": [
+        {
+            "paymentNumber": "PAY60551",
+            "paymentDate": "14-May-2020",
+            "paymentAmount": 983.00
+        },
+        {
+            "paymentNumber": "PAY60552",
+            "paymentDate": "14-May-2020",
+            "paymentAmount": 983.00
+        },
+        {
+            "paymentNumber": "PAY60553",
+            "paymentDate": "14-May-2020",
+            "paymentAmount": 983.00
+        }
+    ]
+}

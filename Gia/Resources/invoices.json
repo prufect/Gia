@@ -1,0 +1,30 @@
+{
+    "success": true,
+    "message": "Data retrieved successfully",
+    "data": [
+        {
+            "businessUnit": "3306",
+            "transactionNumber": "INV60551",
+            "transactionDate": "14-May-2020",
+            "transactionDueDate": "14-Jun-2020",
+            "transactionAmount": 983.00,
+            "transactionDueAmount": 983.00
+        },
+        {
+            "businessUnit": "3306",
+            "transactionNumber": "INV60552",
+            "transactionDate": "14-May-2020",
+            "transactionDueDate": "14-Jul-2020",
+            "transactionAmount": 983.00,
+            "transactionDueAmount": 983.00
+        },
+        {
+            "businessUnit": "3306",
+            "transactionNumber": "INV60553",
+            "transactionDate": "14-May-2020",
+            "transactionDueDate": "14-Aug-2020",
+            "transactionAmount": 983.00,
+            "transactionDueAmount": 983.00
+        }
+    ]
+}

@@ -16,6 +16,12 @@
 		A4BFE02024D88B6A009AC522 /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4BFE01F24D88B6A009AC522 /* HomeController.swift */; };
 		A4BFE02224D88CB9009AC522 /* AccountsTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4BFE02124D88CB9009AC522 /* AccountsTableController.swift */; };
 		A4BFE02524D88F87009AC522 /* UIViewController+Add.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4BFE02424D88F87009AC522 /* UIViewController+Add.swift */; };
+		A4BFE02724D89172009AC522 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4BFE02624D89172009AC522 /* Models.swift */; };
+		A4BFE02E24D89189009AC522 /* disputes.json in Resources */ = {isa = PBXBuildFile; fileRef = A4BFE02924D89189009AC522 /* disputes.json */; };
+		A4BFE02F24D89189009AC522 /* accounts.json in Resources */ = {isa = PBXBuildFile; fileRef = A4BFE02A24D89189009AC522 /* accounts.json */; };
+		A4BFE03024D89189009AC522 /* invoices.json in Resources */ = {isa = PBXBuildFile; fileRef = A4BFE02B24D89189009AC522 /* invoices.json */; };
+		A4BFE03124D89189009AC522 /* payments.json in Resources */ = {isa = PBXBuildFile; fileRef = A4BFE02C24D89189009AC522 /* payments.json */; };
+		A4BFE03224D89189009AC522 /* acctdetails.json in Resources */ = {isa = PBXBuildFile; fileRef = A4BFE02D24D89189009AC522 /* acctdetails.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +48,12 @@
 		A4BFE01F24D88B6A009AC522 /* HomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
 		A4BFE02124D88CB9009AC522 /* AccountsTableController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountsTableController.swift; sourceTree = "<group>"; };
 		A4BFE02424D88F87009AC522 /* UIViewController+Add.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Add.swift"; sourceTree = "<group>"; };
+		A4BFE02624D89172009AC522 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
+		A4BFE02924D89189009AC522 /* disputes.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = disputes.json; sourceTree = "<group>"; };
+		A4BFE02A24D89189009AC522 /* accounts.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = accounts.json; sourceTree = "<group>"; };
+		A4BFE02B24D89189009AC522 /* invoices.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = invoices.json; sourceTree = "<group>"; };
+		A4BFE02C24D89189009AC522 /* payments.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = payments.json; sourceTree = "<group>"; };
+		A4BFE02D24D89189009AC522 /* acctdetails.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = acctdetails.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,12 +95,14 @@
 		A4BFDFFC24D88ABD009AC522 /* Gia */ = {
 			isa = PBXGroup;
 			children = (
+				A4BFE02824D89179009AC522 /* Resources */,
 				A4BFE02324D88F7E009AC522 /* Extensions */,
 				A4BFDFFD24D88ABD009AC522 /* AppDelegate.swift */,
 				A4BFDFFF24D88ABD009AC522 /* SceneDelegate.swift */,
 				A4BFE00124D88ABD009AC522 /* RootController.swift */,
 				A4BFE01F24D88B6A009AC522 /* HomeController.swift */,
 				A4BFE02124D88CB9009AC522 /* AccountsTableController.swift */,
+				A4BFE02624D89172009AC522 /* Models.swift */,
 				A4BFE00624D88ABE009AC522 /* Assets.xcassets */,
 				A4BFE00824D88ABE009AC522 /* LaunchScreen.storyboard */,
 				A4BFE00B24D88ABE009AC522 /* Info.plist */,
@@ -111,6 +125,18 @@
 				A4BFE02424D88F87009AC522 /* UIViewController+Add.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		A4BFE02824D89179009AC522 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				A4BFE02A24D89189009AC522 /* accounts.json */,
+				A4BFE02D24D89189009AC522 /* acctdetails.json */,
+				A4BFE02924D89189009AC522 /* disputes.json */,
+				A4BFE02B24D89189009AC522 /* invoices.json */,
+				A4BFE02C24D89189009AC522 /* payments.json */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -194,6 +220,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A4BFE03024D89189009AC522 /* invoices.json in Resources */,
+				A4BFE02E24D89189009AC522 /* disputes.json in Resources */,
+				A4BFE03224D89189009AC522 /* acctdetails.json in Resources */,
+				A4BFE03124D89189009AC522 /* payments.json in Resources */,
+				A4BFE02F24D89189009AC522 /* accounts.json in Resources */,
 				A4BFE00A24D88ABE009AC522 /* LaunchScreen.storyboard in Resources */,
 				A4BFE00724D88ABE009AC522 /* Assets.xcassets in Resources */,
 			);
@@ -219,6 +250,7 @@
 				A4BFE00224D88ABD009AC522 /* RootController.swift in Sources */,
 				A4BFDFFE24D88ABD009AC522 /* AppDelegate.swift in Sources */,
 				A4BFE00024D88ABD009AC522 /* SceneDelegate.swift in Sources */,
+				A4BFE02724D89172009AC522 /* Models.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -1,0 +1,28 @@
+{
+    "success": true,
+    "message": "Data retrieved successfully",
+    "data": [
+        {
+            "disputeNumber": "DISH60551",
+            "transactionDate": "14-May-2020",
+            "transactionAmount": 983.00,
+            "transactionDueAmount": 983.00,
+            "ApprovedAmount": 61.4
+        },
+        {
+            "disputeNumber": "DISH60552",
+            "transactionDate": "14-May-2020",
+            "transactionAmount": 983.00,
+            "transactionDueAmount": 983.00,
+            "ApprovedAmount": 152.00
+        },
+        {
+            "disputeNumber": "DISH60553",
+            "transactionDate": "14-May-2020",
+            "transactionAmount": 983.00,
+            "transactionDueAmount": 983.00,
+            "ApprovedAmount": 466.40
+        }
+    ]
+}
+

@@ -1,0 +1,45 @@
+{
+    "success": true,
+    "message": "Data retrieved successfully",
+    "data": [{
+        "generalInfo": {
+            "custmerName": "APPLE INC",
+            "dbRating": 90,
+            "lastPaidAmount": 27000.00,
+            "lastpadiDate": "18-Jun-2020",
+            "lastCreditReview": "27-Mar-2020",
+            "dso": 27,
+            "creditHoldFlag": false,
+            "creditLimit": 1000000.00,
+            "paymentTerm": "90 days Due net"
+        },
+        "accountSummery": {
+            "balanceDueAmount": 100000.00,
+            "currentDueAmount": 55000.00,
+            "pastDueAmount": 45000.00,
+            "disputeAmount": 10000.00
+        },
+        "customerInfo": {
+            "address1": "One Apple Park Way",
+            "address2": "",
+            "address3": "",
+            "address4": "",
+            "city": "Cupertino",
+            "state": "CA",
+            "country": "USA",
+            "postalCode": "95014"
+        },
+        "customerContact": {
+            "phone": "(408) 996–1010",
+            "fax": "(408) 996–1010",
+            "contactType": "Accounts Payable",
+            "email": "noemail@apple.com"
+        },
+        "internalConact": {
+            "purchangeRep": "NON EXIST",
+            "outsideSalesRep": "NON EXIST",
+            "serviceRep": "NON EXIST",
+            "creditRep": "Chiara Presutti"
+        }
+    }]
+}
