@@ -10,6 +10,7 @@
 		A45DB82224D8B4B90050A624 /* AccountsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = A45DB82124D8B4B90050A624 /* AccountsStore.swift */; };
 		A45DB82424D8B7510050A624 /* UITableViewController+EmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A45DB82324D8B7510050A624 /* UITableViewController+EmptyView.swift */; };
 		A45DB82624D8B7CD0050A624 /* AccountRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A45DB82524D8B7CD0050A624 /* AccountRow.swift */; };
+		A474980924D8D976005AB41B /* UINavigationController+Swipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = A474980824D8D976005AB41B /* UINavigationController+Swipe.swift */; };
 		A474BAF024D8CFAB00AC16E1 /* DetailsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A474BAEF24D8CFAB00AC16E1 /* DetailsController.swift */; };
 		A4BFDFFE24D88ABD009AC522 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4BFDFFD24D88ABD009AC522 /* AppDelegate.swift */; };
 		A4BFE00024D88ABD009AC522 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4BFDFFF24D88ABD009AC522 /* SceneDelegate.swift */; };
@@ -44,6 +45,7 @@
 		A45DB82124D8B4B90050A624 /* AccountsStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountsStore.swift; sourceTree = "<group>"; };
 		A45DB82324D8B7510050A624 /* UITableViewController+EmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableViewController+EmptyView.swift"; sourceTree = "<group>"; };
 		A45DB82524D8B7CD0050A624 /* AccountRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountRow.swift; sourceTree = "<group>"; };
+		A474980824D8D976005AB41B /* UINavigationController+Swipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController+Swipe.swift"; sourceTree = "<group>"; };
 		A474BAEF24D8CFAB00AC16E1 /* DetailsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsController.swift; sourceTree = "<group>"; };
 		A4BFDFFA24D88ABD009AC522 /* Gia.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Gia.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A4BFDFFD24D88ABD009AC522 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -141,6 +143,7 @@
 				A4BFE02424D88F87009AC522 /* UIViewController+Add.swift */,
 				A4BFE03824D89790009AC522 /* Bundle+Decode.swift */,
 				A45DB82324D8B7510050A624 /* UITableViewController+EmptyView.swift */,
+				A474980824D8D976005AB41B /* UINavigationController+Swipe.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -274,6 +277,7 @@
 				A45DB82624D8B7CD0050A624 /* AccountRow.swift in Sources */,
 				A4BFE02024D88B6A009AC522 /* HomeController.swift in Sources */,
 				A4BFE03724D894C8009AC522 /* AddAccountController.swift in Sources */,
+				A474980924D8D976005AB41B /* UINavigationController+Swipe.swift in Sources */,
 				A4BFE02524D88F87009AC522 /* UIViewController+Add.swift in Sources */,
 				A4BFE03424D89223009AC522 /* EmptyListController.swift in Sources */,
 				A4BFE03924D89790009AC522 /* Bundle+Decode.swift in Sources */,
