@@ -15,7 +15,7 @@ final class RootController: UIViewController {
     }
     
     private func showHomeController() {
-        let homeController = HomeController()
+        let homeController = UINavigationController(rootViewController: HomeController())
         homeController.modalPresentationStyle = .fullScreen
         present(homeController, animated: false)
     }

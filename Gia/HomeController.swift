@@ -12,6 +12,17 @@ final class HomeController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setupNav()
         add(AccountsTableController())
+    }
+    
+    @objc func onAddTapped() {
+        print("Tapped Add")
+    }
+    
+    private func setupNav() {
+        title = "Accounts"
+        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(onAddTapped))
     }
 }

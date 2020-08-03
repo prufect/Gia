@@ -11,6 +11,5 @@ import UIKit
 class AccountsTableController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .red
     }
 }
