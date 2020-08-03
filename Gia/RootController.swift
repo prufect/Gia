@@ -8,13 +8,16 @@
 
 import UIKit
 
-class RootController: UIViewController {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
+final class RootController: UIViewController {
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        showHomeController()
     }
-
-
+    
+    private func showHomeController() {
+        let homeController = HomeController()
+        homeController.modalPresentationStyle = .fullScreen
+        present(homeController, animated: false)
+    }
 }
 

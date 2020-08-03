@@ -13,6 +13,7 @@
 		A4BFE00724D88ABE009AC522 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A4BFE00624D88ABE009AC522 /* Assets.xcassets */; };
 		A4BFE00A24D88ABE009AC522 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A4BFE00824D88ABE009AC522 /* LaunchScreen.storyboard */; };
 		A4BFE01524D88ABE009AC522 /* GiaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4BFE01424D88ABE009AC522 /* GiaTests.swift */; };
+		A4BFE02024D88B6A009AC522 /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4BFE01F24D88B6A009AC522 /* HomeController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +37,7 @@
 		A4BFE01024D88ABE009AC522 /* GiaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GiaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A4BFE01424D88ABE009AC522 /* GiaTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiaTests.swift; sourceTree = "<group>"; };
 		A4BFE01624D88ABE009AC522 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A4BFE01F24D88B6A009AC522 /* HomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +82,7 @@
 				A4BFDFFD24D88ABD009AC522 /* AppDelegate.swift */,
 				A4BFDFFF24D88ABD009AC522 /* SceneDelegate.swift */,
 				A4BFE00124D88ABD009AC522 /* RootController.swift */,
+				A4BFE01F24D88B6A009AC522 /* HomeController.swift */,
 				A4BFE00624D88ABE009AC522 /* Assets.xcassets */,
 				A4BFE00824D88ABE009AC522 /* LaunchScreen.storyboard */,
 				A4BFE00B24D88ABE009AC522 /* Info.plist */,
@@ -196,6 +199,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A4BFE02024D88B6A009AC522 /* HomeController.swift in Sources */,
 				A4BFE00224D88ABD009AC522 /* RootController.swift in Sources */,
 				A4BFDFFE24D88ABD009AC522 /* AppDelegate.swift in Sources */,
 				A4BFE00024D88ABD009AC522 /* SceneDelegate.swift in Sources */,
