@@ -12,13 +12,15 @@ final class HomeController: UITableViewController {
     
     private var storage = AccountsStore()
     
-    private var accounts: [AccountsData] = [] {
+    private var accounts: [AccountsData] = []
+    private var filteredAccounts: [AccountsData] = [] {
         didSet { reload() }
     }
     
     init() {
         super.init(nibName: nil, bundle: nil)
         accounts = storage.getAllAccounts()
+        filteredAccounts = accounts
     }
     
     required init?(coder: NSCoder) {
@@ -31,25 +33,29 @@ final class HomeController: UITableViewController {
         setupNav()
         setupSearch()
         setupTableView()
+        setupView()
     }
     
     @objc func onAddTapped() {
         let addAccountController = UINavigationController(rootViewController:
-            AddAccountController(onAccountTap: { [weak self] accountsData in
-                self?.accounts.append(accountsData)
-            }))
+                                                            AddAccountController(onAccountTap: { [weak self] accountsData in
+                                                                self?.accounts.append(accountsData)
+                                                            }))
         
         present(addAccountController, animated: true, completion: nil)
     }
     
     func reload() {
         storage.save(accounts)
-        
         tableView.reloadData()
+        setupView()
+    }
+    
+    private func setupView() {
         if accounts.count == 0 {
-            showEmptyView()
+            add(EmptyListController(), to: tableView.tableFooterView)
         } else {
-            removeEmptyView()
+            tableView.tableFooterView = UIView()
         }
     }
     
@@ -63,10 +69,12 @@ final class HomeController: UITableViewController {
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.register(AccountRow.self, forCellReuseIdentifier: "AccountCell2")
         tableView.estimatedRowHeight = 44
+        tableView.tableFooterView = UIView()
     }
     
     private func setupSearch() {
         let searchController = UISearchController()
+        searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
         navigationItem.searchController = searchController
     }
@@ -74,14 +82,35 @@ final class HomeController: UITableViewController {
 
 extension HomeController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return accounts.count
+        return filteredAccounts.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "AccountCell2", for: indexPath) as! AccountRow
-        cell.configure(for: accounts[indexPath.row])
+        cell.configure(for: filteredAccounts[indexPath.row])
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            let account = filteredAccounts[indexPath.row]
+            if let index = accounts.firstIndex(of: account) {
+                accounts.remove(at: index)
+            }
+            
+            filteredAccounts.remove(at: indexPath.row)
+        }
     }
 }
 
-
+extension HomeController: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        if let text = searchController.searchBar.text {
+            if text.isEmpty {
+                filteredAccounts = accounts
+            } else {
+                filteredAccounts = accounts.filter { $0.customerName.contains(text) }
+            }
+        }
+    }
+}
