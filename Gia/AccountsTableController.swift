@@ -8,9 +8,9 @@
 
 import UIKit
 
-class AccountsTableController: UITableViewController {
+final class AccountsTableController: UITableViewController {
     
-    var accounts: [AccountsData] = []
+    private var accounts: [AccountsData] = []
     
     init(with accounts: [AccountsData]) {
         self.accounts = accounts
