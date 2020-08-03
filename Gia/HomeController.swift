@@ -10,8 +10,19 @@ import UIKit
 
 final class HomeController: UITableViewController {
     
+    private var storage = AccountsStore()
+    
     private var accounts: [AccountsData] = [] {
         didSet { reload() }
+    }
+    
+    init() {
+        super.init(nibName: nil, bundle: nil)
+        accounts = storage.getAllAccounts()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     override func viewDidLoad() {
@@ -20,7 +31,6 @@ final class HomeController: UITableViewController {
         setupNav()
         setupSearch()
         setupTableView()
-        reload()
     }
     
     @objc func onAddTapped() {
@@ -33,6 +43,8 @@ final class HomeController: UITableViewController {
     }
     
     func reload() {
+        storage.save(accounts)
+        
         tableView.reloadData()
         if accounts.count == 0 {
             showEmptyView()
