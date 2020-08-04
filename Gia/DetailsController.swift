@@ -12,14 +12,6 @@ class DetailsController: UIViewController {
     var account: AccountsData
     var updateImage: ((UIImage) -> ())? = nil
     
-    private lazy var backButton: UIButton = {
-        let b = UIButton()
-        b.setImage(UIImage(systemName: "arrow.left", withConfiguration: UIImage.SymbolConfiguration(textStyle: .title2)), for: .normal)
-        b.addTarget(self, action: #selector(onBackTapped), for: .touchUpInside)
-        b.translatesAutoresizingMaskIntoConstraints = false
-        return b
-    }()
-    
     private lazy var name: UILabel = {
         let l = UILabel()
         l.font = UIFont.preferredFont(forTextStyle: .largeTitle)
@@ -53,7 +45,7 @@ class DetailsController: UIViewController {
     }()
     
     private lazy var segmentedControl: UISegmentedControl = {
-        let sc = UISegmentedControl(items: ["1", "2", "3", "4"])
+        let sc = UISegmentedControl(items: ["Details", "Disputes", "Invoices", "Payments"])
         sc.selectedSegmentIndex = 0
         sc.translatesAutoresizingMaskIntoConstraints = false
         return sc
@@ -82,7 +74,6 @@ class DetailsController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setupBack()
         setupProfileImage()
         setupName()
         setupSegmentedController()
@@ -107,15 +98,9 @@ class DetailsController: UIViewController {
         navigationController?.view.backgroundColor = UIColor.clear
     }
     
-    private func setupBack() {
-        view.addSubview(backButton)
-        backButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16).isActive = true
-        backButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16).isActive = true
-    }
-    
     private func setupProfileImage() {
         view.addSubview(profileImage)
-        profileImage.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 24).isActive = true
+        profileImage.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0).isActive = true
         profileImage.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         profileImage.widthAnchor.constraint(equalToConstant: 90).isActive = true
         profileImage.heightAnchor.constraint(equalToConstant: 90).isActive = true
