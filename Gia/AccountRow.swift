@@ -61,6 +61,9 @@ class AccountRow: UITableViewCell {
         if let imageData = account.image {
             profileImage.image = UIImage(data: imageData)
             icon.isHidden = true
+        } else {
+            profileImage.image = nil
+            icon.isHidden = false
         }
         
         title.text = account.customerName
