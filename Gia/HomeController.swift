@@ -32,7 +32,6 @@ final class HomeController: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
         navigationController?.setNavigationBarHidden(false, animated: true)
     }
     
@@ -96,6 +95,8 @@ extension HomeController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "AccountCell2", for: indexPath) as! AccountRow
+        let account = filteredAccounts[indexPath.row]
+        print(account.image)
         cell.configure(for: filteredAccounts[indexPath.row])
         return cell
     }
@@ -112,8 +113,16 @@ extension HomeController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if navigationItem.searchController!.isActive { dismiss(animated: true, completion: nil) }
         let account = filteredAccounts[indexPath.row]
-        navigationController?.pushViewController(DetailsController(account: account), animated: true)
+        let detailsController = DetailsController(account: account)
+        detailsController.updateImage = { [weak self] image in
+            guard let self = self else { return }
+            if let index = self.accounts.firstIndex(of: account) {
+                self.accounts[index].image = image.pngData()
+            }
+        }
+        navigationController?.pushViewController(detailsController, animated: true)
     }
 }
 

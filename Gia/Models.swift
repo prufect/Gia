@@ -65,7 +65,7 @@ struct Accounts: Codable {
 
 // MARK: - Datum
 struct AccountsData: Codable, Hashable {
-    let image: Data?
+    var image: Data?
     let customerNumber, customerName, parentCustomerNumber, parentCustomerName: String
 
     enum CodingKeys: String, CodingKey {

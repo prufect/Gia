@@ -10,12 +10,13 @@ import UIKit
 
 class AccountRow: UITableViewCell {
     
+    private var icon = UIImageView(image: UIImage(systemName: "person.fill", withConfiguration: UIImage.SymbolConfiguration(textStyle: .headline))?.withTintColor(.label, renderingMode: .alwaysOriginal))
+    
     private lazy var profileImage: UIImageView = {
         let iv = UIImageView()
         iv.backgroundColor = .secondarySystemBackground
         
-        let icon = UIImageView(image: UIImage(systemName: "person.fill", withConfiguration: UIImage.SymbolConfiguration(textStyle: .headline))?.withTintColor(.label, renderingMode: .alwaysOriginal))
-            iv.addSubview(icon)
+        iv.addSubview(icon)
         icon.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             icon.centerYAnchor.constraint(equalTo: iv.centerYAnchor),
@@ -61,6 +62,7 @@ class AccountRow: UITableViewCell {
     func configure(for account: AccountsData) {
         if let imageData = account.image {
             profileImage.image = UIImage(data: imageData)
+            icon.isHidden = true
         }
         
         title.text = account.customerName

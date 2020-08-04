@@ -10,6 +10,7 @@ import UIKit
 
 class DetailsController: UIViewController {
     var account: AccountsData
+    var updateImage: ((UIImage) -> ())? = nil
     
     private lazy var backButton: UIButton = {
         let b = UIButton()
@@ -27,12 +28,13 @@ class DetailsController: UIViewController {
         return l
     }()
     
+    private lazy var icon = UIImageView(image: UIImage(systemName: "person.fill", withConfiguration: UIImage.SymbolConfiguration(textStyle: .headline))?.withTintColor(.label, renderingMode: .alwaysOriginal))
+    
     private lazy var profileImage: UIImageView = {
         let iv = UIImageView()
         iv.backgroundColor = .secondarySystemBackground
         
-        let icon = UIImageView(image: UIImage(systemName: "person.fill", withConfiguration: UIImage.SymbolConfiguration(textStyle: .headline))?.withTintColor(.label, renderingMode: .alwaysOriginal))
-            iv.addSubview(icon)
+        iv.addSubview(icon)
         icon.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             icon.centerYAnchor.constraint(equalTo: iv.centerYAnchor),
@@ -43,8 +45,10 @@ class DetailsController: UIViewController {
         iv.translatesAutoresizingMaskIntoConstraints = false
         iv.layer.cornerRadius = 45
         iv.clipsToBounds = true
+                
+        iv.isUserInteractionEnabled = true
+        iv.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleImageTapped)))
         
-    
         return iv
     }()
     
@@ -58,7 +62,12 @@ class DetailsController: UIViewController {
     init(account: AccountsData) {
         self.account = account
         super.init(nibName: nil, bundle: nil)
+        
         view.backgroundColor = .systemBackground
+        if let image = account.image {
+            profileImage.image = UIImage(data: image)
+            icon.isHidden = true
+        }
     }
     
     required init?(coder: NSCoder) {
@@ -81,6 +90,13 @@ class DetailsController: UIViewController {
     
     @objc func onBackTapped() {
         navigationController?.popViewController(animated: true)
+    }
+    
+    @objc func handleImageTapped() {
+        let picker = UIImagePickerController()
+        picker.allowsEditing = true
+        picker.delegate = self
+        present(picker, animated: true)
     }
     
     private func setupNav() {
@@ -113,5 +129,15 @@ class DetailsController: UIViewController {
         segmentedControl.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 32).isActive = true
         segmentedControl.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -32).isActive = true
         segmentedControl.heightAnchor.constraint(equalToConstant: 32).isActive = true
+    }
+}
+
+extension DetailsController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        guard let image = info[.editedImage] as? UIImage else { return }
+        account.image = image.pngData()
+        profileImage.image = image
+        updateImage?(image)
+        dismiss(animated: true)
     }
 }
