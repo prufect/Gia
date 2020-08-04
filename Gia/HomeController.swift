@@ -53,11 +53,13 @@ final class HomeController: UITableViewController {
     }
     
     private func setupView() {
-//        if accounts.count == 0 {
-//            add(EmptyListController(), to: tableView.tableFooterView)
-//        } else {
-//            tableView.tableFooterView = UIView()
-//        }
+        if filteredAccounts.count == 0 {
+            let v = UIView(frame: .init(x: 0, y: 0, width: tableView.frame.width, height: tableView.frame.height/1.5))
+            tableView.tableHeaderView = v
+            add(EmptyListController(), to: v)
+        } else {
+            tableView.tableHeaderView = nil
+        }
     }
     
     private func setupNav() {
@@ -104,6 +106,7 @@ extension HomeController {
             }
             
             storage.save(accounts)
+            setupView()
         }
     }
     
@@ -140,9 +143,11 @@ extension HomeController: UISearchResultsUpdating {
 
 extension HomeController: AddAccountControllerDelegate {
     func add(_ account: AccountsData) {
+        setupView()
         filteredAccounts.append(account)
         accounts.append(account)
         tableView.insertRows(at: [IndexPath(row: filteredAccounts.count-1, section: 0)], with: .automatic)
         storage.save(filteredAccounts)
+        setupView()
     }
 }

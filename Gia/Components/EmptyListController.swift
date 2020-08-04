@@ -27,9 +27,10 @@ final class EmptyListController: UIViewController {
     private func setupImage() {
         view.addSubview(emptyImage)
         NSLayoutConstraint.activate([
-            emptyImage.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-            emptyImage.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            emptyImage.widthAnchor.constraint(lessThanOrEqualTo: view.widthAnchor, multiplier: 1)
+            emptyImage.topAnchor.constraint(equalTo: view.topAnchor),
+            emptyImage.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            emptyImage.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            emptyImage.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
     }
 }

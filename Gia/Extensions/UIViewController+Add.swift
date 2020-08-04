@@ -11,7 +11,7 @@ import UIKit
 extension UIViewController {
     func add(_ childController: UIViewController, to view: UIView? = nil) {
         let view: UIView = view ?? self.view
-        
+        print(view.frame)
         self.addChild(childController)
         childController.view.frame = view.frame
         view.addSubview(childController.view)
