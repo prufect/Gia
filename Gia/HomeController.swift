@@ -27,6 +27,11 @@ final class HomeController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(false, animated: true)
+        navigationItem.hidesSearchBarWhenScrolling = false
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        navigationItem.hidesSearchBarWhenScrolling = true
     }
     
     override func viewDidLoad() {
@@ -119,6 +124,11 @@ extension HomeController {
             if let index = self.filteredAccounts.firstIndex(of: account) {
                 self.filteredAccounts[index].image = image.pngData()
                 tableView.reloadRows(at: [indexPath], with: .automatic)
+            }
+            
+            if let index = self.accounts.firstIndex(of: account) {
+                self.accounts[index].image = image.pngData()
+                self.storage.save(self.accounts)
             }
         }
         
