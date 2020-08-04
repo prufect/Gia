@@ -86,6 +86,7 @@ class DetailsController: UIViewController {
         setupProfileImage()
         setupName()
         setupSegmentedController()
+        navigationItem.largeTitleDisplayMode = .never
     }
     
     @objc func onBackTapped() {
@@ -100,7 +101,10 @@ class DetailsController: UIViewController {
     }
     
     private func setupNav() {
-        navigationController?.setNavigationBarHidden(true, animated: true)
+        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+        navigationController?.navigationBar.shadowImage = UIImage()
+        navigationController?.navigationBar.isTranslucent = true
+        navigationController?.view.backgroundColor = UIColor.clear
     }
     
     private func setupBack() {

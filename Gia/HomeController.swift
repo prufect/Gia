@@ -26,7 +26,6 @@ final class HomeController: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        navigationController?.setNavigationBarHidden(false, animated: true)
         navigationItem.hidesSearchBarWhenScrolling = false
     }
     
@@ -71,6 +70,7 @@ final class HomeController: UITableViewController {
         title = "Accounts"
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(onAddTapped))
+        navigationItem.largeTitleDisplayMode = .always
     }
     
     private func setupTableView() {
