@@ -14,7 +14,7 @@ class DetailsController: UIViewController {
     
     private lazy var backButton: UIButton = {
         let b = UIButton()
-        b.setImage(UIImage(systemName: "arrow.left", withConfiguration: UIImage.SymbolConfiguration(textStyle: .largeTitle)), for: .normal)
+        b.setImage(UIImage(systemName: "arrow.left", withConfiguration: UIImage.SymbolConfiguration(textStyle: .title2)), for: .normal)
         b.addTarget(self, action: #selector(onBackTapped), for: .touchUpInside)
         b.translatesAutoresizingMaskIntoConstraints = false
         return b
