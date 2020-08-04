@@ -111,7 +111,6 @@ extension HomeController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if navigationItem.searchController!.isActive { dismiss(animated: true, completion: nil) }
         let account = filteredAccounts[indexPath.row]
         let detailsController = DetailsController(account: account)
         
@@ -123,7 +122,14 @@ extension HomeController {
             }
         }
         
-        navigationController?.pushViewController(detailsController, animated: true)
+        if navigationItem.searchController!.isActive {
+            print("Dismiss Search")
+            dismiss(animated: true, completion: {
+                self.navigationController?.pushViewController(detailsController, animated: true)
+            })
+        } else {
+            navigationController?.pushViewController(detailsController, animated: true)
+        }
     }
 }
 
