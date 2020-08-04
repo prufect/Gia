@@ -138,6 +138,7 @@ extension DetailsController: UIImagePickerControllerDelegate, UINavigationContro
         account.image = image.pngData()
         profileImage.image = image
         updateImage?(image)
+        icon.isHidden = true
         dismiss(animated: true)
     }
 }

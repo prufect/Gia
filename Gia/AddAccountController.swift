@@ -8,16 +8,19 @@
 
 import UIKit
 
+protocol AddAccountControllerDelegate: AnyObject {
+    func add(_ account: AccountsData)
+}
+
 final class AddAccountController: UITableViewController {
     
     private var filteredAccounts: [AccountsData] = []
     private var accounts: [AccountsData] = Bundle.main.decode(Accounts.self, from: "accounts.json").data
-    private var onAccountTap: (AccountsData) -> ()
     
-    init(onAccountTap: @escaping (AccountsData) -> ()) {
-        self.onAccountTap = onAccountTap
+    weak var delegate: AddAccountControllerDelegate? = nil
+    
+    init() {
         super.init(nibName: nil, bundle: nil)
-        
         filteredAccounts = accounts
     }
     
@@ -67,11 +70,12 @@ extension AddAccountController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        onAccountTap(filteredAccounts[indexPath.row])
+        delegate?.add(filteredAccounts[indexPath.row])
         
         if navigationItem.searchController!.isActive {
             self.dismiss(animated: false, completion: nil)
         }
+        
         self.dismiss(animated: true, completion: nil)
     }
 }

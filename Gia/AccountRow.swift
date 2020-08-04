@@ -28,8 +28,6 @@ class AccountRow: UITableViewCell {
         iv.layer.cornerRadius = 22
         iv.clipsToBounds = true
         
-    
-        
         return iv
     }()
     

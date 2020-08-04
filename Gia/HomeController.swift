@@ -11,19 +11,11 @@ import UIKit
 final class HomeController: UITableViewController {
     
     private var storage = AccountsStore()
-    
-    private var accounts: [AccountsData] = [] {
-        didSet { filteredAccounts = accounts }
-    }
-    
-    private var filteredAccounts: [AccountsData] = [] {
-        didSet { reload() }
-    }
+    private var accounts: [AccountsData] = []
     
     init() {
         super.init(nibName: nil, bundle: nil)
         accounts = storage.getAllAccounts()
-        filteredAccounts = accounts
     }
     
     required init?(coder: NSCoder) {
@@ -45,15 +37,14 @@ final class HomeController: UITableViewController {
     }
     
     @objc func onAddTapped() {
-        let addAccountController = UINavigationController(rootViewController:
-                                                            AddAccountController(onAccountTap: { [weak self] accountsData in
-                                                                self?.accounts.append(accountsData)
-                                                            }))
+        let addAccountController = AddAccountController()
+        addAccountController.delegate = self
         
-        present(addAccountController, animated: true, completion: nil)
+        present(UINavigationController(rootViewController: addAccountController), animated: true, completion: nil)
     }
     
     func reload() {
+        print("Reload")
         storage.save(accounts)
         tableView.reloadData()
         setupView()
@@ -90,50 +81,58 @@ final class HomeController: UITableViewController {
 
 extension HomeController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return filteredAccounts.count
+        return accounts.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "AccountCell2", for: indexPath) as! AccountRow
-        let account = filteredAccounts[indexPath.row]
-        print(account.image)
-        cell.configure(for: filteredAccounts[indexPath.row])
+        let account = accounts[indexPath.row]
+        cell.configure(for: account)
         return cell
     }
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            let account = filteredAccounts[indexPath.row]
+            let account = accounts[indexPath.row]
             if let index = accounts.firstIndex(of: account) {
                 accounts.remove(at: index)
             }
             
-            filteredAccounts.remove(at: indexPath.row)
         }
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if navigationItem.searchController!.isActive { dismiss(animated: true, completion: nil) }
-        let account = filteredAccounts[indexPath.row]
+        let account = accounts[indexPath.row]
         let detailsController = DetailsController(account: account)
+        
         detailsController.updateImage = { [weak self] image in
             guard let self = self else { return }
             if let index = self.accounts.firstIndex(of: account) {
                 self.accounts[index].image = image.pngData()
+                tableView.reloadRows(at: [indexPath], with: .automatic)
             }
         }
+        
         navigationController?.pushViewController(detailsController, animated: true)
     }
 }
 
 extension HomeController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
-        if let text = searchController.searchBar.text {
-            if text.isEmpty {
-                filteredAccounts = accounts
-            } else {
-                filteredAccounts = accounts.filter { $0.customerName.contains(text) }
-            }
-        }
+//        if let text = searchController.searchBar.text {
+//            if text.isEmpty {
+//                filteredAccounts = accounts
+//            } else {
+//                filteredAccounts = accounts.filter { $0.customerName.contains(text) }
+//            }
+//        }
+    }
+}
+
+extension HomeController: AddAccountControllerDelegate {
+    func add(_ account: AccountsData) {
+        accounts.append(account)
+        tableView.insertRows(at: [IndexPath(row: accounts.count-1, section: 0)], with: .automatic)
     }
 }
