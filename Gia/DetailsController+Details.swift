@@ -64,7 +64,7 @@ extension DetailsController {
             .init(name: "Transaction Date", content: disputes[0].transactionDate),
             .init(name: "Transaction Amount", content: "$\(disputes[0].transactionAmount).00"),
             .init(name: "Transaction Due Amount", content: "$\(disputes[0].transactionDueAmount).00"),
-            .init(name: "Approved Amount", content: "$\(disputes[0].approvedAmount).00"),
+            .init(name: "Approved Amount", content: "$\(disputes[0].approvedAmount)0"),
         ]
         
         invoicesData = [

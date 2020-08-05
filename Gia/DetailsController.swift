@@ -29,10 +29,24 @@ class DetailsController: UITableViewController {
                 tableView.separatorStyle = .singleLine
             } else {
                 tableView.separatorStyle = .none
+                tableView.rowHeight = 200
+                
+                tableView.addSubview(disputeItem)
+//                disputeItem.leadingAnchor.constraint(equalTo: tableView.leadingAnchor).isActive = true
+//                disputeItem.trailingAnchor.constraint(equalTo: tableView.trailingAnchor).isActive = true
+//                disputeItem.topAnchor.constraint(equalTo: tableView.topAnchor).isActive = true
+//                disputeItem.heightAnchor.constraint(equalToConstant: 120).isActive = true
             }
             tableView.reloadData()
         }
     }
+    
+    private lazy var disputeItem: DisputeCell = {
+        let v = DisputeCell(frame: .init(x: 0, y: 200, width: tableView.frame.width, height: 180))
+        v.disputeData = disputesData
+//        v.translatesAutoresizingMaskIntoConstraints = false
+        return v
+    }()
     
     var storage = AccountsStore()
     
@@ -195,6 +209,9 @@ class DetailsController: UITableViewController {
     
     private func setupTableView() {
         tableView.register(DetailsRow.self, forCellReuseIdentifier: "InfoCell")
+//        tableView.register(DisputeCell.self, forCellReuseIdentifier: "DisputeCell")
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.estimatedRowHeight = 100
 //        tableView.tableHeaderView = headerView
     }
 }
@@ -222,11 +239,11 @@ extension DetailsController {
         case 0:
             return detailsData[section].count
         case 1:
-            return disputesData.count
+            return 0
         case 2:
-            return invoicesData.count
+            return 0
         case 3:
-            return paymentsData.count
+            return 0
         default:
             break
         }
@@ -240,9 +257,13 @@ extension DetailsController {
         
         switch selectedIndex {
         case 0:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "InfoCell", for: indexPath) as! DetailsRow
             detail = detailsData[indexPath.section][indexPath.row]
+            cell.content.text = detail!.content
+            cell.name.text = detail!.name
+            return cell
         case 1:
-            detail = disputesData[indexPath.row]
+            break
         case 2:
             detail = invoicesData[indexPath.row]
         case 3:
@@ -254,6 +275,10 @@ extension DetailsController {
         cell.content.text = detail!.content
         cell.name.text = detail!.name
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableView.automaticDimension
     }
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {

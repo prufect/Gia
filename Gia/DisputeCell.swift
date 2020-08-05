@@ -8,87 +8,44 @@
 
 import UIKit
 
-class ItemView: UIView {
-    
-    var detail: Detail? = nil {
-        didSet {
-            name.text = detail!.name
-            content.text = detail!.content
-        }
-    }
-    
-    lazy var name: UILabel = {
-        let l = UILabel()
-        l.font = UIFont.preferredFont(forTextStyle: .caption1)
-        l.textColor = .placeholderText
-        l.translatesAutoresizingMaskIntoConstraints = false
-        return l
-    }()
-    
-    lazy var content: UILabel = {
-        let l = UILabel()
-        l.font = UIFont.preferredFont(forTextStyle: .headline)
-        l.textColor = .label
-        l.translatesAutoresizingMaskIntoConstraints = false
-        return l
-    }()
-    
-    init() {
-        super.init(frame: .zero)
-        
-        setupName()
-        setupContent()
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    private func setupName() {
-        addSubview(name)
-        name.topAnchor.constraint(equalTo: topAnchor, constant: 4).isActive = true
-        name.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16).isActive = true
-    }
-    
-    private func setupContent() {
-        addSubview(content)
-        content.topAnchor.constraint(equalTo: name.bottomAnchor, constant: 0).isActive = true
-        content.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16).isActive = true
-    }
-}
-
-
-class DisputeCell: UITableViewCell {
+class DisputeCell: UIView {
     
     var disputeData: [Detail] = [] {
         didSet {
             number.detail = disputeData[0]
-            number.detail = disputeData[1]
-            number.detail = disputeData[2]
-            number.detail = disputeData[3]
+            date.detail = disputeData[1]
+            tAmount.detail = disputeData[2]
+            tDueAmount.detail = disputeData[3]
+            approvedAmount.detail = disputeData[4]
         }
     }
     
     lazy var number: ItemView = {
-        let item = ItemView()
+        let item = ItemView(left: true)
         item.translatesAutoresizingMaskIntoConstraints = false
         return item
     }()
     
     lazy var date: ItemView = {
-        let item = ItemView()
+        let item = ItemView(left: false)
         item.translatesAutoresizingMaskIntoConstraints = false
         return item
     }()
 
     lazy var tAmount: ItemView = {
-        let item = ItemView()
+        let item = ItemView(left: true)
         item.translatesAutoresizingMaskIntoConstraints = false
         return item
     }()
     
     lazy var tDueAmount: ItemView = {
-        let item = ItemView()
+        let item = ItemView(left: false)
+        item.translatesAutoresizingMaskIntoConstraints = false
+        return item
+    }()
+    
+    lazy var approvedAmount: ItemView = {
+        let item = ItemView(left: false)
         item.translatesAutoresizingMaskIntoConstraints = false
         return item
     }()
@@ -96,8 +53,8 @@ class DisputeCell: UITableViewCell {
     private lazy var stack1: UIStackView = {
         let sv = UIStackView(arrangedSubviews: [number, date])
         sv.axis = .horizontal
-        sv.alignment = .top
-        sv.distribution = .fill
+        sv.alignment = .fill
+        sv.distribution = .equalSpacing
         sv.spacing = 4
         sv.translatesAutoresizingMaskIntoConstraints = false
         return sv
@@ -106,38 +63,83 @@ class DisputeCell: UITableViewCell {
     private lazy var stack2: UIStackView = {
         let sv = UIStackView(arrangedSubviews: [tAmount, tDueAmount])
         sv.axis = .horizontal
-        sv.alignment = .top
-        sv.distribution = .fill
+        sv.alignment = .fill
+        sv.distribution = .equalSpacing
+        sv.spacing = 4
+        sv.translatesAutoresizingMaskIntoConstraints = false
+        return sv
+    }()
+    
+    private lazy var stack3: UIStackView = {
+        let sv = UIStackView(arrangedSubviews: [approvedAmount])
+        sv.axis = .horizontal
+        sv.alignment = .trailing
+        sv.distribution = .equalSpacing
         sv.spacing = 4
         sv.translatesAutoresizingMaskIntoConstraints = false
         return sv
     }()
     
     private lazy var vStack: UIStackView = {
-        let sv = UIStackView(arrangedSubviews: [stack1, stack2])
+        let sv = UIStackView(arrangedSubviews: [stack1, stack2, stack3])
         sv.axis = .vertical
         sv.alignment = .fill
-        sv.distribution = .fillProportionally
+        sv.distribution = .fill
         sv.spacing = 8
         sv.translatesAutoresizingMaskIntoConstraints = false
         return sv
     }()
     
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
+    private lazy var bgView: UIView = {
+        let v = UIView(frame: .init(x: 0, y: 0, width: self.bounds.width, height: 120))
+        v.backgroundColor = .secondarySystemBackground
+        v.layer.cornerRadius = 12
+        v.clipsToBounds = true
+        v.translatesAutoresizingMaskIntoConstraints = false
+        return v
+    }()
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
         
-        setupStack()
+        setupBG()
+        setupName()
+//        setupDate()
+//        setupStack()
+    }
+    
+    private func setupBG() {
+        addSubview(bgView)
+        bgView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16).isActive = true
+        bgView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16).isActive = true
+        bgView.topAnchor.constraint(equalTo: topAnchor, constant: 8).isActive = true
+        bgView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -8).isActive = true
+    }
+    
+    private func setupName() {
+        bgView.addSubview(vStack)
+        vStack.leadingAnchor.constraint(equalTo: bgView.leadingAnchor, constant: 8).isActive = true
+        vStack.topAnchor.constraint(equalTo: bgView.topAnchor, constant: 8).isActive = true
+        vStack.trailingAnchor.constraint(equalTo: bgView.trailingAnchor, constant: -8).isActive = true
+        vStack.bottomAnchor.constraint(equalTo: bgView.bottomAnchor, constant: -8).isActive = true
+    }
+    
+    private func setupDate() {
+        bgView.addSubview(date)
+        date.leadingAnchor.constraint(equalTo: number.trailingAnchor, constant: 8).isActive = true
+        date.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8).isActive = true
+        date.topAnchor.constraint(equalTo: bgView.topAnchor, constant: 8).isActive = true
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func setupStack() {
-        contentView.addSubview(vStack)
-        vStack.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 4).isActive = true
-        vStack.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16).isActive = true
-        vStack.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16).isActive = true
-        vStack.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -4).isActive = true
-    }
+//    private func setupStack() {
+//        addSubview(vStack)
+//        vStack.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 4).isActive = true
+//        vStack.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16).isActive = true
+//        vStack.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16).isActive = true
+//        vStack.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -4).isActive = true
+//    }
 }
