@@ -29,6 +29,7 @@
 		A4BFE03424D89223009AC522 /* EmptyListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4BFE03324D89223009AC522 /* EmptyListController.swift */; };
 		A4BFE03724D894C8009AC522 /* AddAccountController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4BFE03624D894C8009AC522 /* AddAccountController.swift */; };
 		A4BFE03924D89790009AC522 /* Bundle+Decode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4BFE03824D89790009AC522 /* Bundle+Decode.swift */; };
+		A4F6A64724DA62B900FC4CA3 /* DetailsController+Details.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4F6A64624DA62B900FC4CA3 /* DetailsController+Details.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,6 +69,7 @@
 		A4BFE03324D89223009AC522 /* EmptyListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyListController.swift; sourceTree = "<group>"; };
 		A4BFE03624D894C8009AC522 /* AddAccountController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAccountController.swift; sourceTree = "<group>"; };
 		A4BFE03824D89790009AC522 /* Bundle+Decode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Decode.swift"; sourceTree = "<group>"; };
+		A4F6A64624DA62B900FC4CA3 /* DetailsController+Details.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DetailsController+Details.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,6 +119,7 @@
 				A4BFE00124D88ABD009AC522 /* RootController.swift */,
 				A4BFE01F24D88B6A009AC522 /* HomeController.swift */,
 				A474BAEF24D8CFAB00AC16E1 /* DetailsController.swift */,
+				A4F6A64624DA62B900FC4CA3 /* DetailsController+Details.swift */,
 				A45DB82124D8B4B90050A624 /* AccountsStore.swift */,
 				A45DB82524D8B7CD0050A624 /* AccountRow.swift */,
 				A4BFE03624D894C8009AC522 /* AddAccountController.swift */,
@@ -283,6 +286,7 @@
 				A4BFE03924D89790009AC522 /* Bundle+Decode.swift in Sources */,
 				A4BFE00224D88ABD009AC522 /* RootController.swift in Sources */,
 				A45DB82224D8B4B90050A624 /* AccountsStore.swift in Sources */,
+				A4F6A64724DA62B900FC4CA3 /* DetailsController+Details.swift in Sources */,
 				A4BFDFFE24D88ABD009AC522 /* AppDelegate.swift in Sources */,
 				A4BFE00024D88ABD009AC522 /* SceneDelegate.swift in Sources */,
 				A4BFE02724D89172009AC522 /* Models.swift in Sources */,

@@ -8,9 +8,19 @@
 
 import UIKit
 
+struct Detail {
+    let name: String
+    let content: String
+}
+
 class DetailsController: UITableViewController {
     var account: AccountsData
     var updateImage: ((UIImage) -> ())? = nil
+    
+    var detailsData: [Detail] = []
+    var disputesData: [Detail] = []
+    var invoicesData: [Detail] = []
+    var paymentsData: [Detail] = []
     
     var selectedIndex = 0 {
         didSet {
@@ -73,6 +83,9 @@ class DetailsController: UITableViewController {
             profileImage.image = UIImage(data: image)
             icon.isHidden = true
         }
+        
+        print(account)
+        getDetails()
     }
     
     required init?(coder: NSCoder) {
@@ -151,24 +164,41 @@ class DetailsController: UITableViewController {
 
 extension DetailsController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        switch selectedIndex {
+        case 0:
+            return detailsData.count
+        case 1:
+            return disputesData.count
+        case 2:
+            return invoicesData.count
+        case 3:
+            return paymentsData.count
+        default:
+            break
+        }
+        
+        return 0
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "InfoCell", for: indexPath)
-        cell.textLabel?.text = "\(indexPath.row)"
+        var detail: Detail?
+        
         switch selectedIndex {
         case 0:
-            cell.backgroundColor = .red
+            detail = detailsData[indexPath.row]
         case 1:
-            cell.backgroundColor = .green
+            detail = disputesData[indexPath.row]
         case 2:
-            cell.backgroundColor = .blue
+            detail = invoicesData[indexPath.row]
         case 3:
-            cell.backgroundColor = .yellow
+            detail = paymentsData[indexPath.row]
         default:
             break
         }
+        
+        cell.textLabel?.text = detail!.content
+        cell.detailTextLabel?.text = detail!.name
         return cell
     }
     
