@@ -19,9 +19,13 @@ final class RootController: UITabBarController {
         let homeController = UINavigationController(rootViewController: HomeController())
         homeController.tabBarItem = UITabBarItem(tabBarSystemItem: .contacts, tag: 0)
         
+        let assistant = UINavigationController(rootViewController: UIViewController())
+        assistant.tabBarItem = UITabBarItem(title: "Assistant", image: UIImage(systemName: "message.fill"), tag: 0)
+        
         viewControllers = [
             favoritesController,
             homeController,
+            assistant
         ]
     }
     
