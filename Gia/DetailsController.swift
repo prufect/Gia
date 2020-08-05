@@ -18,7 +18,7 @@ class DetailsController: UITableViewController {
     var updateImage: ((UIImage) -> ())? = nil
     var updateFavorite: ((AccountsData) -> ())? = nil
 
-    var detailsData: [Detail] = []
+    var detailsData: [[Detail]] = []
     var disputesData: [Detail] = []
     var invoicesData: [Detail] = []
     var paymentsData: [Detail] = []
@@ -127,9 +127,10 @@ class DetailsController: UITableViewController {
     }
     
     private func setupNav() {
-        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+//        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
         navigationController?.navigationBar.shadowImage = UIImage()
         navigationController?.navigationBar.isTranslucent = true
+        navigationController?.navigationBar.barTintColor = .systemBackground
         navigationController?.view.backgroundColor = UIColor.clear
         
         
@@ -194,10 +195,27 @@ class DetailsController: UITableViewController {
 }
 
 extension DetailsController {
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         switch selectedIndex {
         case 0:
             return detailsData.count
+        case 1:
+            return 1
+        case 2:
+            return 1
+        case 3:
+            return 1
+        default:
+            break
+        }
+        
+        return 1
+    }
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        switch selectedIndex {
+        case 0:
+            return detailsData[section].count
         case 1:
             return disputesData.count
         case 2:
@@ -217,7 +235,7 @@ extension DetailsController {
         
         switch selectedIndex {
         case 0:
-            detail = detailsData[indexPath.row]
+            detail = detailsData[indexPath.section][indexPath.row]
         case 1:
             detail = disputesData[indexPath.row]
         case 2:
@@ -235,26 +253,55 @@ extension DetailsController {
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         
-        let headerView = UIView()
-        headerView.backgroundColor = .systemBackground
-        
-        headerView.addSubview(profileImage)
-        profileImage.topAnchor.constraint(equalTo: headerView.safeAreaLayoutGuide.topAnchor, constant: 0).isActive = true
-        profileImage.centerXAnchor.constraint(equalTo: headerView.centerXAnchor).isActive = true
-        profileImage.widthAnchor.constraint(equalToConstant: 90).isActive = true
-        profileImage.heightAnchor.constraint(equalToConstant: 90).isActive = true
-        
-        headerView.addSubview(name)
-        name.topAnchor.constraint(equalTo: profileImage.bottomAnchor, constant: 8).isActive = true
-        name.centerXAnchor.constraint(equalTo: headerView.centerXAnchor).isActive = true
-        
-        headerView.addSubview(segmentedControl)
-        segmentedControl.topAnchor.constraint(equalTo: name.bottomAnchor, constant: 16).isActive = true
-        segmentedControl.leadingAnchor.constraint(equalTo: headerView.leadingAnchor, constant: 32).isActive = true
-        segmentedControl.trailingAnchor.constraint(equalTo: headerView.trailingAnchor, constant: -32).isActive = true
-        segmentedControl.heightAnchor.constraint(equalToConstant: 32).isActive = true
+        if section == 0 {
+            let headerView = UIView()
+                headerView.backgroundColor = .systemBackground
+                
+                headerView.addSubview(profileImage)
+                profileImage.topAnchor.constraint(equalTo: headerView.safeAreaLayoutGuide.topAnchor, constant: 0).isActive = true
+                profileImage.centerXAnchor.constraint(equalTo: headerView.centerXAnchor).isActive = true
+                profileImage.widthAnchor.constraint(equalToConstant: 90).isActive = true
+                profileImage.heightAnchor.constraint(equalToConstant: 90).isActive = true
+                
+                headerView.addSubview(name)
+                name.topAnchor.constraint(equalTo: profileImage.bottomAnchor, constant: 8).isActive = true
+                name.centerXAnchor.constraint(equalTo: headerView.centerXAnchor).isActive = true
+                
+                headerView.addSubview(segmentedControl)
+                segmentedControl.topAnchor.constraint(equalTo: name.bottomAnchor, constant: 16).isActive = true
+                segmentedControl.leadingAnchor.constraint(equalTo: headerView.leadingAnchor, constant: 32).isActive = true
+                segmentedControl.trailingAnchor.constraint(equalTo: headerView.trailingAnchor, constant: -32).isActive = true
+                segmentedControl.heightAnchor.constraint(equalToConstant: 32).isActive = true
+            
+                return headerView
+        } else {
+            return nil
+        }
+    }
     
-        return headerView
+    
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        switch selectedIndex {
+        case 0:
+            if section == 1 {
+                return "General Info"
+            } else if section == 2 {
+                return "Account Summary"
+            } else if section == 3 {
+                return "Customer Info"
+            } else if section == 4 {
+                return "Customer Contact"
+            } else if section == 5 {
+                return "Internal Contact"
+            }
+        case 1: break
+        case 2: break
+        case 3: break
+        default:
+            break
+        }
+         
+        return nil
     }
     
     @objc func handleTest() {
@@ -262,7 +309,11 @@ extension DetailsController {
     }
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 200
+        if section == 0 {
+            return 200
+        } else {
+            return 44
+        }
     }
 }
 
