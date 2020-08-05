@@ -8,9 +8,15 @@
 
 import UIKit
 
-class DetailsController: UIViewController {
+class DetailsController: UITableViewController {
     var account: AccountsData
     var updateImage: ((UIImage) -> ())? = nil
+    
+    var selectedIndex = 0 {
+        didSet {
+            tableView.reloadData()
+        }
+    }
     
     private lazy var name: UILabel = {
         let l = UILabel()
@@ -48,7 +54,14 @@ class DetailsController: UIViewController {
         let sc = UISegmentedControl(items: ["Details", "Disputes", "Invoices", "Payments"])
         sc.selectedSegmentIndex = 0
         sc.translatesAutoresizingMaskIntoConstraints = false
+        sc.addTarget(self, action: #selector(onSegmentChange), for: .valueChanged)
         return sc
+    }()
+    
+    private lazy var headerView: UIView = {
+        let v = UIView()
+        v.translatesAutoresizingMaskIntoConstraints = false
+        return v
     }()
     
     init(account: AccountsData) {
@@ -78,6 +91,12 @@ class DetailsController: UIViewController {
         setupName()
         setupSegmentedController()
         navigationItem.largeTitleDisplayMode = .never
+//        setupHeaderView()
+        setupTableView()
+    }
+    
+    @objc func onSegmentChange(sender: UISegmentedControl) {
+        selectedIndex = sender.selectedSegmentIndex
     }
     
     @objc func onBackTapped() {
@@ -99,25 +118,90 @@ class DetailsController: UIViewController {
     }
     
     private func setupProfileImage() {
-        view.addSubview(profileImage)
-        profileImage.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0).isActive = true
-        profileImage.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        headerView.addSubview(profileImage)
+        profileImage.topAnchor.constraint(equalTo: headerView.safeAreaLayoutGuide.topAnchor, constant: 0).isActive = true
+        profileImage.centerXAnchor.constraint(equalTo: headerView.centerXAnchor).isActive = true
         profileImage.widthAnchor.constraint(equalToConstant: 90).isActive = true
         profileImage.heightAnchor.constraint(equalToConstant: 90).isActive = true
     }
     
     private func setupName() {
-        view.addSubview(name)
+        headerView.addSubview(name)
         name.topAnchor.constraint(equalTo: profileImage.bottomAnchor, constant: 8).isActive = true
-        name.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        name.centerXAnchor.constraint(equalTo: headerView.centerXAnchor).isActive = true
     }
     
     private func setupSegmentedController() {
-        view.addSubview(segmentedControl)
+        headerView.addSubview(segmentedControl)
         segmentedControl.topAnchor.constraint(equalTo: name.bottomAnchor, constant: 16).isActive = true
-        segmentedControl.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 32).isActive = true
-        segmentedControl.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -32).isActive = true
+        segmentedControl.leadingAnchor.constraint(equalTo: headerView.leadingAnchor, constant: 32).isActive = true
+        segmentedControl.trailingAnchor.constraint(equalTo: headerView.trailingAnchor, constant: -32).isActive = true
         segmentedControl.heightAnchor.constraint(equalToConstant: 32).isActive = true
+    }
+    
+    private func setupHeaderView() {
+        headerView.heightAnchor.constraint(equalToConstant: 400).isActive = false
+    }
+    
+    private func setupTableView() {
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "InfoCell")
+//        tableView.tableHeaderView = headerView
+    }
+}
+
+extension DetailsController {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 10
+    }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "InfoCell", for: indexPath)
+        cell.textLabel?.text = "\(indexPath.row)"
+        switch selectedIndex {
+        case 0:
+            cell.backgroundColor = .red
+        case 1:
+            cell.backgroundColor = .green
+        case 2:
+            cell.backgroundColor = .blue
+        case 3:
+            cell.backgroundColor = .yellow
+        default:
+            break
+        }
+        return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        
+        let headerView = UIView()
+        headerView.backgroundColor = .systemBackground
+        
+        headerView.addSubview(profileImage)
+        profileImage.topAnchor.constraint(equalTo: headerView.safeAreaLayoutGuide.topAnchor, constant: 0).isActive = true
+        profileImage.centerXAnchor.constraint(equalTo: headerView.centerXAnchor).isActive = true
+        profileImage.widthAnchor.constraint(equalToConstant: 90).isActive = true
+        profileImage.heightAnchor.constraint(equalToConstant: 90).isActive = true
+        
+        headerView.addSubview(name)
+        name.topAnchor.constraint(equalTo: profileImage.bottomAnchor, constant: 8).isActive = true
+        name.centerXAnchor.constraint(equalTo: headerView.centerXAnchor).isActive = true
+        
+        headerView.addSubview(segmentedControl)
+        segmentedControl.topAnchor.constraint(equalTo: name.bottomAnchor, constant: 16).isActive = true
+        segmentedControl.leadingAnchor.constraint(equalTo: headerView.leadingAnchor, constant: 32).isActive = true
+        segmentedControl.trailingAnchor.constraint(equalTo: headerView.trailingAnchor, constant: -32).isActive = true
+        segmentedControl.heightAnchor.constraint(equalToConstant: 32).isActive = true
+    
+        return headerView
+    }
+    
+    @objc func handleTest() {
+        print("Tapped")
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 200
     }
 }
 
