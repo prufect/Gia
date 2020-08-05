@@ -8,11 +8,21 @@
 
 import UIKit
 
-final class RootController: UIViewController {
+final class RootController: UITabBarController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         view.backgroundColor = .systemBackground
-        showHomeController()
+        
+        let favoritesController = UINavigationController(rootViewController: FavoritesController())
+        favoritesController.tabBarItem = UITabBarItem(tabBarSystemItem: .favorites, tag: 0)
+        
+        let homeController = UINavigationController(rootViewController: HomeController())
+        homeController.tabBarItem = UITabBarItem(tabBarSystemItem: .contacts, tag: 0)
+        
+        viewControllers = [
+            favoritesController,
+            homeController,
+        ]
     }
     
     private func showHomeController() {

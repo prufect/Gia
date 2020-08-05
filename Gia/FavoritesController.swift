@@ -1,14 +1,14 @@
 //
-//  HomeController.swift
+//  FavoritesController.swift
 //  Gia
 //
-//  Created by Prudhvi Gadiraju on 8/3/20.
+//  Created by Prudhvi Gadiraju on 8/4/20.
 //  Copyright © 2020 Prudhvi Gadiraju. All rights reserved.
 //
 
 import UIKit
 
-final class HomeController: UITableViewController {
+final class FavoritesController: UITableViewController {
     
     private var storage = AccountsStore()
     private var accounts: [AccountsData] = []
@@ -16,8 +16,6 @@ final class HomeController: UITableViewController {
     
     init() {
         super.init(nibName: nil, bundle: nil)
-        accounts = storage.getAllAccounts()
-        filteredAccounts = accounts
     }
     
     required init?(coder: NSCoder) {
@@ -27,10 +25,15 @@ final class HomeController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationItem.hidesSearchBarWhenScrolling = false
+        accounts = AccountsStore.favorites
+        filteredAccounts = accounts
+        setupView()
+        print(accounts)
     }
     
     override func viewDidAppear(_ animated: Bool) {
         navigationItem.hidesSearchBarWhenScrolling = true
+        tableView.reloadData()
     }
     
     override func viewDidLoad() {
@@ -67,9 +70,8 @@ final class HomeController: UITableViewController {
     }
     
     private func setupNav() {
-        title = "Accounts"
+        title = "Favorites"
         navigationController?.navigationBar.prefersLargeTitles = true
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(onAddTapped))
         navigationItem.largeTitleDisplayMode = .always
     }
     
@@ -88,7 +90,7 @@ final class HomeController: UITableViewController {
     }
 }
 
-extension HomeController {
+extension FavoritesController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return filteredAccounts.count
     }
@@ -132,20 +134,6 @@ extension HomeController {
             }
         }
         
-        detailsController.updateFavorite = { [weak self] acc in
-            guard let self = self else { return }
-            print(acc.isFavorite)
-            if let index = self.filteredAccounts.firstIndex(of: account) {
-                self.filteredAccounts[index] = acc
-                tableView.reloadRows(at: [indexPath], with: .automatic)
-            }
-            
-            if let index = self.accounts.firstIndex(of: account) {
-                self.accounts[index] = acc
-                self.storage.save(self.accounts)
-            }
-        }
-        
         if navigationItem.searchController!.isActive {
             print("Dismiss Search")
             dismiss(animated: true, completion: {
@@ -157,7 +145,7 @@ extension HomeController {
     }
 }
 
-extension HomeController: UISearchResultsUpdating {
+extension FavoritesController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         if let text = searchController.searchBar.text {
             if text.isEmpty {
@@ -171,7 +159,7 @@ extension HomeController: UISearchResultsUpdating {
     }
 }
 
-extension HomeController: AddAccountControllerDelegate {
+extension FavoritesController: AddAccountControllerDelegate {
     func add(_ account: AccountsData) {
         setupView()
         filteredAccounts.append(account)

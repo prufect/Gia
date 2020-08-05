@@ -16,7 +16,8 @@ struct Detail {
 class DetailsController: UITableViewController {
     var account: AccountsData
     var updateImage: ((UIImage) -> ())? = nil
-    
+    var updateFavorite: ((AccountsData) -> ())? = nil
+
     var detailsData: [Detail] = []
     var disputesData: [Detail] = []
     var invoicesData: [Detail] = []
@@ -27,6 +28,8 @@ class DetailsController: UITableViewController {
             tableView.reloadData()
         }
     }
+    
+    var storage = AccountsStore()
     
     private lazy var name: UILabel = {
         let l = UILabel()
@@ -128,6 +131,35 @@ class DetailsController: UITableViewController {
         navigationController?.navigationBar.shadowImage = UIImage()
         navigationController?.navigationBar.isTranslucent = true
         navigationController?.view.backgroundColor = UIColor.clear
+        
+        
+        updateRighBarButton()
+    }
+    
+    func updateRighBarButton() {
+        let btnFavourite = UIButton(frame: .init(x: 0,y: 0,width: 30,height: 30))
+        btnFavourite.addTarget(self, action: #selector(didTapFavorite), for: .touchUpInside)
+
+        if AccountsStore.favorites.contains(account) {
+            btnFavourite.setImage(UIImage(systemName: "star.fill"), for: .normal)
+        } else {
+            btnFavourite.setImage(UIImage(systemName: "star"), for: .normal)
+        }
+        
+        let rightButton = UIBarButtonItem(customView: btnFavourite)
+        self.navigationItem.setRightBarButton(rightButton, animated: true)
+    }
+    
+    @objc func didTapFavorite() {
+        if let index = AccountsStore.favorites.firstIndex(of: account) {
+            AccountsStore.favorites.remove(at: index)
+            AccountsStore.saveFavorites()
+        } else {
+            AccountsStore.favorites.append(account)
+            AccountsStore.saveFavorites()
+        }
+        
+        updateRighBarButton()
     }
     
     private func setupProfileImage() {

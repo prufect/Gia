@@ -40,12 +40,12 @@ class DetailsRow: UITableViewCell {
     private func setupName() {
         contentView.addSubview(name)
         name.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 4).isActive = true
-        name.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 8).isActive = true
+        name.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16).isActive = true
     }
     
     private func setupContent() {
         contentView.addSubview(content)
         content.topAnchor.constraint(equalTo: name.bottomAnchor, constant: 0).isActive = true
-        content.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 8).isActive = true
+        content.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16).isActive = true
     }
 }
