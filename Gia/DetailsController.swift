@@ -157,7 +157,7 @@ class DetailsController: UITableViewController {
     }
     
     private func setupTableView() {
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "InfoCell")
+        tableView.register(DetailsRow.self, forCellReuseIdentifier: "InfoCell")
 //        tableView.tableHeaderView = headerView
     }
 }
@@ -181,7 +181,7 @@ extension DetailsController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "InfoCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "InfoCell", for: indexPath) as! DetailsRow
         var detail: Detail?
         
         switch selectedIndex {
@@ -197,8 +197,8 @@ extension DetailsController {
             break
         }
         
-        cell.textLabel?.text = detail!.content
-        cell.detailTextLabel?.text = detail!.name
+        cell.content.text = detail!.content
+        cell.name.text = detail!.name
         return cell
     }
     
