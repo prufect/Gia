@@ -10,6 +10,8 @@
 		A42C6E7324DA6BFE001450CC /* FavoritesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A42C6E7224DA6BFE001450CC /* FavoritesController.swift */; };
 		A42C6E7524DB1F3C001450CC /* DisputeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A42C6E7424DB1F3C001450CC /* DisputeCell.swift */; };
 		A42C6E7724DB31E7001450CC /* ItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A42C6E7624DB31E7001450CC /* ItemView.swift */; };
+		A42C6E7924DB39FD001450CC /* PaymentsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A42C6E7824DB39FD001450CC /* PaymentsCell.swift */; };
+		A42C6E7B24DB3A6F001450CC /* InvoicesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A42C6E7A24DB3A6F001450CC /* InvoicesCell.swift */; };
 		A45DB82224D8B4B90050A624 /* AccountsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = A45DB82124D8B4B90050A624 /* AccountsStore.swift */; };
 		A45DB82424D8B7510050A624 /* UITableViewController+EmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A45DB82324D8B7510050A624 /* UITableViewController+EmptyView.swift */; };
 		A45DB82624D8B7CD0050A624 /* AccountRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A45DB82524D8B7CD0050A624 /* AccountRow.swift */; };
@@ -50,6 +52,8 @@
 		A42C6E7224DA6BFE001450CC /* FavoritesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesController.swift; sourceTree = "<group>"; };
 		A42C6E7424DB1F3C001450CC /* DisputeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisputeCell.swift; sourceTree = "<group>"; };
 		A42C6E7624DB31E7001450CC /* ItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemView.swift; sourceTree = "<group>"; };
+		A42C6E7824DB39FD001450CC /* PaymentsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentsCell.swift; sourceTree = "<group>"; };
+		A42C6E7A24DB3A6F001450CC /* InvoicesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvoicesCell.swift; sourceTree = "<group>"; };
 		A45DB82124D8B4B90050A624 /* AccountsStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountsStore.swift; sourceTree = "<group>"; };
 		A45DB82324D8B7510050A624 /* UITableViewController+EmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableViewController+EmptyView.swift"; sourceTree = "<group>"; };
 		A45DB82524D8B7CD0050A624 /* AccountRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountRow.swift; sourceTree = "<group>"; };
@@ -131,6 +135,8 @@
 				A4F6A64624DA62B900FC4CA3 /* DetailsController+Details.swift */,
 				A4F6A64824DA648F00FC4CA3 /* DetailsRow.swift */,
 				A42C6E7424DB1F3C001450CC /* DisputeCell.swift */,
+				A42C6E7824DB39FD001450CC /* PaymentsCell.swift */,
+				A42C6E7A24DB3A6F001450CC /* InvoicesCell.swift */,
 				A42C6E7624DB31E7001450CC /* ItemView.swift */,
 				A45DB82124D8B4B90050A624 /* AccountsStore.swift */,
 				A45DB82524D8B7CD0050A624 /* AccountRow.swift */,
@@ -293,6 +299,7 @@
 				A4BFE02024D88B6A009AC522 /* HomeController.swift in Sources */,
 				A42C6E7724DB31E7001450CC /* ItemView.swift in Sources */,
 				A42C6E7324DA6BFE001450CC /* FavoritesController.swift in Sources */,
+				A42C6E7B24DB3A6F001450CC /* InvoicesCell.swift in Sources */,
 				A4BFE03724D894C8009AC522 /* AddAccountController.swift in Sources */,
 				A474980924D8D976005AB41B /* UINavigationController+Swipe.swift in Sources */,
 				A4BFE02524D88F87009AC522 /* UIViewController+Add.swift in Sources */,
@@ -306,6 +313,7 @@
 				A42C6E7524DB1F3C001450CC /* DisputeCell.swift in Sources */,
 				A4BFE00024D88ABD009AC522 /* SceneDelegate.swift in Sources */,
 				A4BFE02724D89172009AC522 /* Models.swift in Sources */,
+				A42C6E7924DB39FD001450CC /* PaymentsCell.swift in Sources */,
 				A45DB82424D8B7510050A624 /* UITableViewController+EmptyView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

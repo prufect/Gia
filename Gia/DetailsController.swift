@@ -27,16 +27,31 @@ class DetailsController: UITableViewController {
         didSet {
             if selectedIndex == 0 {
                 tableView.separatorStyle = .singleLine
-            } else {
+                disputeItem.isHidden = true
+                invoiceItem.isHidden = true
+                paymentsItem.isHidden = true
+            } else if selectedIndex == 1 {
                 tableView.separatorStyle = .none
                 tableView.rowHeight = 200
-                
-                tableView.addSubview(disputeItem)
-//                disputeItem.leadingAnchor.constraint(equalTo: tableView.leadingAnchor).isActive = true
-//                disputeItem.trailingAnchor.constraint(equalTo: tableView.trailingAnchor).isActive = true
-//                disputeItem.topAnchor.constraint(equalTo: tableView.topAnchor).isActive = true
-//                disputeItem.heightAnchor.constraint(equalToConstant: 120).isActive = true
+                disputeItem.isHidden = false
+                invoiceItem.isHidden = true
+                paymentsItem.isHidden = true
+            } else if selectedIndex == 2 {
+                tableView.separatorStyle = .none
+                tableView.rowHeight = 200
+                tableView.addSubview(invoiceItem)
+                disputeItem.isHidden = true
+                invoiceItem.isHidden = false
+                paymentsItem.isHidden = true
+            } else if selectedIndex == 3 {
+                tableView.separatorStyle = .none
+                tableView.rowHeight = 200
+                tableView.addSubview(paymentsItem)
+                disputeItem.isHidden = true
+                invoiceItem.isHidden = true
+                paymentsItem.isHidden = false
             }
+
             tableView.reloadData()
         }
     }
@@ -44,7 +59,21 @@ class DetailsController: UITableViewController {
     private lazy var disputeItem: DisputeCell = {
         let v = DisputeCell(frame: .init(x: 0, y: 200, width: tableView.frame.width, height: 180))
         v.disputeData = disputesData
-//        v.translatesAutoresizingMaskIntoConstraints = false
+        v.isHidden = true
+        return v
+    }()
+    
+    private lazy var invoiceItem: InvoicesCell = {
+        let v = InvoicesCell(frame: .init(x: 0, y: 200, width: tableView.frame.width, height: 180))
+        v.invoicesData = invoicesData
+        v.isHidden = true
+        return v
+    }()
+    
+    private lazy var paymentsItem: PaymentsCell = {
+        let v = PaymentsCell(frame: .init(x: 0, y: 200, width: tableView.frame.width, height: 120))
+        v.paymentsData = paymentsData
+        v.isHidden = true
         return v
     }()
     
@@ -128,6 +157,12 @@ class DetailsController: UITableViewController {
         navigationItem.largeTitleDisplayMode = .never
 //        setupHeaderView()
         setupTableView()
+        
+        getDetails()
+
+        tableView.addSubview(disputeItem)
+        tableView.addSubview(invoiceItem)
+        tableView.addSubview(paymentsItem)
     }
     
     @objc func onSegmentChange(sender: UISegmentedControl) {
