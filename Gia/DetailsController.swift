@@ -57,21 +57,21 @@ class DetailsController: UITableViewController {
     }
     
     private lazy var disputeItem: DisputeCell = {
-        let v = DisputeCell(frame: .init(x: 0, y: 200, width: tableView.frame.width, height: 180))
+        let v = DisputeCell(frame: .init(x: 0, y: 200, width: tableView.frame.width, height: 200))
         v.disputeData = disputesData
         v.isHidden = true
         return v
     }()
     
     private lazy var invoiceItem: InvoicesCell = {
-        let v = InvoicesCell(frame: .init(x: 0, y: 200, width: tableView.frame.width, height: 180))
+        let v = InvoicesCell(frame: .init(x: 0, y: 200, width: tableView.frame.width, height: 200))
         v.invoicesData = invoicesData
         v.isHidden = true
         return v
     }()
     
     private lazy var paymentsItem: PaymentsCell = {
-        let v = PaymentsCell(frame: .init(x: 0, y: 200, width: tableView.frame.width, height: 120))
+        let v = PaymentsCell(frame: .init(x: 0, y: 200, width: tableView.frame.width, height: 140))
         v.paymentsData = paymentsData
         v.isHidden = true
         return v
@@ -247,6 +247,7 @@ class DetailsController: UITableViewController {
 //        tableView.register(DisputeCell.self, forCellReuseIdentifier: "DisputeCell")
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 100
+        tableView.allowsSelection = false
 //        tableView.tableHeaderView = headerView
     }
 }
