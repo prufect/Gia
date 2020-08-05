@@ -25,6 +25,11 @@ class DetailsController: UITableViewController {
     
     var selectedIndex = 0 {
         didSet {
+            if selectedIndex == 0 {
+                tableView.separatorStyle = .singleLine
+            } else {
+                tableView.separatorStyle = .none
+            }
             tableView.reloadData()
         }
     }

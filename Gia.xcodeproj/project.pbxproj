@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		A42C6E7324DA6BFE001450CC /* FavoritesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A42C6E7224DA6BFE001450CC /* FavoritesController.swift */; };
+		A42C6E7524DB1F3C001450CC /* DisputeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A42C6E7424DB1F3C001450CC /* DisputeCell.swift */; };
 		A45DB82224D8B4B90050A624 /* AccountsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = A45DB82124D8B4B90050A624 /* AccountsStore.swift */; };
 		A45DB82424D8B7510050A624 /* UITableViewController+EmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A45DB82324D8B7510050A624 /* UITableViewController+EmptyView.swift */; };
 		A45DB82624D8B7CD0050A624 /* AccountRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A45DB82524D8B7CD0050A624 /* AccountRow.swift */; };
@@ -46,6 +47,7 @@
 
 /* Begin PBXFileReference section */
 		A42C6E7224DA6BFE001450CC /* FavoritesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesController.swift; sourceTree = "<group>"; };
+		A42C6E7424DB1F3C001450CC /* DisputeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisputeCell.swift; sourceTree = "<group>"; };
 		A45DB82124D8B4B90050A624 /* AccountsStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountsStore.swift; sourceTree = "<group>"; };
 		A45DB82324D8B7510050A624 /* UITableViewController+EmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableViewController+EmptyView.swift"; sourceTree = "<group>"; };
 		A45DB82524D8B7CD0050A624 /* AccountRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountRow.swift; sourceTree = "<group>"; };
@@ -126,6 +128,7 @@
 				A474BAEF24D8CFAB00AC16E1 /* DetailsController.swift */,
 				A4F6A64624DA62B900FC4CA3 /* DetailsController+Details.swift */,
 				A4F6A64824DA648F00FC4CA3 /* DetailsRow.swift */,
+				A42C6E7424DB1F3C001450CC /* DisputeCell.swift */,
 				A45DB82124D8B4B90050A624 /* AccountsStore.swift */,
 				A45DB82524D8B7CD0050A624 /* AccountRow.swift */,
 				A4BFE03624D894C8009AC522 /* AddAccountController.swift */,
@@ -296,6 +299,7 @@
 				A45DB82224D8B4B90050A624 /* AccountsStore.swift in Sources */,
 				A4F6A64724DA62B900FC4CA3 /* DetailsController+Details.swift in Sources */,
 				A4BFDFFE24D88ABD009AC522 /* AppDelegate.swift in Sources */,
+				A42C6E7524DB1F3C001450CC /* DisputeCell.swift in Sources */,
 				A4BFE00024D88ABD009AC522 /* SceneDelegate.swift in Sources */,
 				A4BFE02724D89172009AC522 /* Models.swift in Sources */,
 				A45DB82424D8B7510050A624 /* UITableViewController+EmptyView.swift in Sources */,
