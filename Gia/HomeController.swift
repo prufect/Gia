@@ -134,7 +134,6 @@ extension HomeController {
         
         detailsController.updateFavorite = { [weak self] acc in
             guard let self = self else { return }
-            print(acc.isFavorite)
             if let index = self.filteredAccounts.firstIndex(of: account) {
                 self.filteredAccounts[index] = acc
                 tableView.reloadRows(at: [indexPath], with: .automatic)

@@ -140,7 +140,7 @@ class DetailsController: UITableViewController {
         let btnFavourite = UIButton(frame: .init(x: 0,y: 0,width: 30,height: 30))
         btnFavourite.addTarget(self, action: #selector(didTapFavorite), for: .touchUpInside)
 
-        if AccountsStore.favorites.contains(account) {
+        if account.isFavorite ?? false {
             btnFavourite.setImage(UIImage(systemName: "star.fill"), for: .normal)
         } else {
             btnFavourite.setImage(UIImage(systemName: "star"), for: .normal)
@@ -151,14 +151,13 @@ class DetailsController: UITableViewController {
     }
     
     @objc func didTapFavorite() {
-        if let index = AccountsStore.favorites.firstIndex(of: account) {
-            AccountsStore.favorites.remove(at: index)
-            AccountsStore.saveFavorites()
+        if let _ = account.isFavorite {
+            account.isFavorite?.toggle()
         } else {
-            AccountsStore.favorites.append(account)
-            AccountsStore.saveFavorites()
+            account.isFavorite = true
         }
-        
+        updateFavorite?(account)
+        //storage.update(account)
         updateRighBarButton()
     }
     

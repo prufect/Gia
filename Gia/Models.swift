@@ -64,13 +64,14 @@ struct Accounts: Codable {
 }
 
 // MARK: - Datum
-struct AccountsData: Codable, Hashable {
+struct AccountsData: Codable, Hashable, Equatable, Identifiable {
+    let id = UUID()
     var image: Data?
-    var isFavorite: Bool = false
+    var isFavorite: Bool? = false
     let customerNumber, customerName, parentCustomerNumber, parentCustomerName: String
 
     enum CodingKeys: String, CodingKey {
-        case customerNumber, customerName, parentCustomerNumber, image
+        case customerNumber, customerName, parentCustomerNumber, image, id, isFavorite
         case parentCustomerName = "ParentCustomerName"
     }
 }

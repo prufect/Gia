@@ -25,7 +25,7 @@ final class FavoritesController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationItem.hidesSearchBarWhenScrolling = false
-        accounts = AccountsStore.favorites
+        accounts = storage.getFavorites()
         filteredAccounts = accounts
         setupView()
         print(accounts)
@@ -132,6 +132,16 @@ extension FavoritesController {
                 self.accounts[index].image = image.pngData()
                 self.storage.save(self.accounts)
             }
+            
+        }
+        
+        detailsController.updateFavorite = { [weak self] acc in
+            guard let self = self else { return }
+            
+            self.filteredAccounts.remove(at: indexPath.row)
+            tableView.reloadData()
+            
+            self.storage.update(acc, to: false)
         }
         
         if navigationItem.searchController!.isActive {
